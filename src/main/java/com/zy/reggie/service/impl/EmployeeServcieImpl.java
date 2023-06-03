@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zy.reggie.entity.Employee;
 import com.zy.reggie.mapper.EmployeeMapper;
 import com.zy.reggie.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @Version 1.0
  */
 @Service
+@Slf4j
 public class EmployeeServcieImpl extends ServiceImpl<EmployeeMapper, Employee> implements EmployeeService {
 
 }

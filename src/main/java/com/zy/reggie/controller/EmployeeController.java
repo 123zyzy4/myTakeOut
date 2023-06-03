@@ -82,11 +82,11 @@ public class EmployeeController {
     @PostMapping
     public R<String> save(HttpServletRequest httpServletRequest,@RequestBody Employee e){
         e.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
-        e.setCreateTime(LocalDateTime.now());
-        e.setUpdateTime(LocalDateTime.now());
-        Long userId = (Long) httpServletRequest.getSession().getAttribute("employee");
-        e.setCreateUser(userId);
-        e.setUpdateUser(userId);
+//        e.setCreateTime(LocalDateTime.now());
+//        e.setUpdateTime(LocalDateTime.now());
+//        Long userId = (Long) httpServletRequest.getSession().getAttribute("employee");
+//        e.setCreateUser(userId);
+//        e.setUpdateUser(userId);
 
         employeeService.save(e);
         return R.success("新建员工成功");
@@ -105,7 +105,7 @@ public class EmployeeController {
     @GetMapping("/page")
     public R<Page> page(int page,int pageSize, String name){
         log.info("page:{}  pageSize:{}  name:{}",page,pageSize,name);
-        Page pageInfo = new Page(page,pageSize);
+        Page<Employee> pageInfo = new Page(page,pageSize);
         LambdaQueryWrapper<Employee> queryWrapper=new LambdaQueryWrapper<>();
         queryWrapper.like(StringUtils.isNotEmpty(name),Employee::getUsername,name);
         queryWrapper.orderByDesc(Employee::getUpdateTime);
@@ -118,14 +118,21 @@ public class EmployeeController {
      * @param: employee
      * @return R<String>
      */
-
     @PutMapping
     public R<String> update(HttpServletRequest request,@RequestBody Employee employee){
         log.info(employee.toString());
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser((Long)request.getSession().getAttribute("employee"));
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser((Long)request.getSession().getAttribute("employee"));
         employeeService.updateById(employee);
         return R.success("更新成功");
-
+    }
+    @GetMapping("/{id}")
+    public R<Employee> getById(@PathVariable Long id){
+        log.info("id为{}",id);
+        Employee employee = employeeService.getById(id);
+        if(employee==null){
+            return R.error("没有查询到员工信息");
+        }
+        return R.success(employee);
     }
 }
