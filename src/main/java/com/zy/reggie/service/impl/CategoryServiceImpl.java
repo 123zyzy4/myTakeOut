@@ -47,6 +47,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         int count1 = dishService.count(dishLambdaQueryWrapper);
         if(count1>0){
             throw new CustomException("当前分类下关联着菜品");
+
         }
 
         LambdaQueryWrapper<Setmeal> setmealLambdaQueryWrapper=new LambdaQueryWrapper();
