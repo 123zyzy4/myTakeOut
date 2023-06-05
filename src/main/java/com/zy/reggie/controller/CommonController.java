@@ -76,7 +76,7 @@ public class CommonController {
             byte[] bytes=new byte[1024];
 
             if (!response.isCommitted()) {
-                while ((len=fileInputStream.read())!=-1){
+                while ((len=fileInputStream.read(bytes))!=-1){
                     outputStream.write(bytes,0,len);
                     outputStream.flush();
                 }

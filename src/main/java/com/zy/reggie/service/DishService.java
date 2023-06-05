@@ -1,6 +1,7 @@
 package com.zy.reggie.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zy.reggie.dto.DishDto;
 import com.zy.reggie.entity.Dish;
 
 /**
@@ -11,4 +12,8 @@ import com.zy.reggie.entity.Dish;
  * @Version 1.0
  */
 public interface DishService extends IService<Dish> {
+    public void saveWithFlavor(DishDto dishDto);
+    public DishDto getByIDWithFlavor(Long id);
+
+    public void updateWithFlavor(DishDto dishDto);
 }
