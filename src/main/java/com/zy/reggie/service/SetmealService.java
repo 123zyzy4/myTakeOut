@@ -1,6 +1,7 @@
 package com.zy.reggie.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zy.reggie.dto.SetmealDto;
 import com.zy.reggie.entity.Setmeal;
 
 /**
@@ -11,4 +12,5 @@ import com.zy.reggie.entity.Setmeal;
  * @Version 1.0
  */
 public interface SetmealService extends IService<Setmeal> {
+    public void saveWithDish(SetmealDto setmealDto);
 }
