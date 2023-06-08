@@ -47,7 +47,7 @@ public class UserController {
             log.info("code={}",validateCode);
 //            SMSUtils.sendMessage("瑞吉外卖","发送方手机号（没注册用不了）",phone,validateCode);
             request.getSession().setAttribute(phone,validateCode);
-            request.getSession().setAttribute("user",user.getId());
+
 
             return R.success("短信发送成功");
         }
@@ -80,7 +80,7 @@ public class UserController {
                 user.setStatus(1);
                 userService.save(user);
             }
-
+            request.getSession().setAttribute("user",user.getId());
             return R.success(user);
         }
         return R.error("登陆失败");
