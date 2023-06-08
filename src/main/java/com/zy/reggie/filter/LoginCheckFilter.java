@@ -33,7 +33,7 @@ public class LoginCheckFilter implements Filter {
                 "/backend/**",
                 "/front/**",
                 "/user/login",
-                "/user/senMsg"
+                "/user/sendMsg"
         };
         String currentUrl=request.getRequestURI();
         log.info("拦截到请求：{}",currentUrl);
