@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zy.reggie.dto.SetmealDto;
 import com.zy.reggie.entity.Setmeal;
 
+import java.util.List;
+
 /**
  * @ClassName SetmealService
  * @Description TODO
@@ -13,4 +15,6 @@ import com.zy.reggie.entity.Setmeal;
  */
 public interface SetmealService extends IService<Setmeal> {
     public void saveWithDish(SetmealDto setmealDto);
+
+    public void removeWithDish(List<Long> ids);
 }

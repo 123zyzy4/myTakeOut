@@ -31,7 +31,9 @@ public class LoginCheckFilter implements Filter {
                 "/employee/login",
                 "/employee/logout",
                 "/backend/**",
-                "/front/**"
+                "/front/**",
+                "/user/login",
+                "/user/senMsg"
         };
         String currentUrl=request.getRequestURI();
         log.info("拦截到请求：{}",currentUrl);
@@ -43,8 +45,15 @@ public class LoginCheckFilter implements Filter {
             return;
         }
         if(request.getSession().getAttribute("employee")!=null){
-            log.info("用户{}已经登录",request.getSession().getAttribute("employee"));
+            log.info("员工{}已经登录",request.getSession().getAttribute("employee"));
             BaseContext.setThreadLocal((Long) request.getSession().getAttribute("employee"));
+            filterChain.doFilter(request,response);
+            return;
+        }
+
+        if(request.getSession().getAttribute("user")!=null){
+            log.info("用户{}已经登录",request.getSession().getAttribute("user"));
+            BaseContext.setThreadLocal((Long) request.getSession().getAttribute("user"));
             filterChain.doFilter(request,response);
             return;
         }

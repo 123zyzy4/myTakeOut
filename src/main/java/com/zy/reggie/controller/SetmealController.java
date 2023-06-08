@@ -11,6 +11,7 @@ import com.zy.reggie.service.SetmealDishService;
 import com.zy.reggie.service.SetmealService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -87,7 +88,15 @@ public class SetmealController {
         return R.success(setmealDtoPage);
     }
 
-    public R<String> delete(){
-
+    /**
+     * @description: 套餐删除
+     * @author zhangyu
+     * @param: ids
+     * @return R<String>
+     */
+    @DeleteMapping
+    public R<String> delete(@RequestParam List<Long> ids){
+        setmealService.removeWithDish(ids);
+        return R.success("删除套餐成功");
     }
 }
